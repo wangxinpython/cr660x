@@ -13,4 +13,13 @@
 # Modify default IP
 #sed -i 's/192.168.1.1/192.168.3.7/g' package/base-files/files/bin/config_generate 
 #sed -i '/DEPENDS/s/||SOFT_FLOAT//' feeds/packages/lang/node/Makefile 
+
+git clone https://github.com/Zxilly/UA2F package/UA2F
+git clone https://github.com/CHN-beta/rkp-ipid package/rkp-ipid
+
 git clone https://github.com/jerrykuku/luci-theme-argon.git package/lean/luci-theme-argon
+
+for configFile in $(ls target/linux/ramips/mt7621/config*)
+do
+    echo -e "\nCONFIG_NETFILTER_NETLINK_GLUE_CT=y" >> $configFile
+done
